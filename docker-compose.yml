@@ -1,0 +1,45 @@
+services:
+  screenshot:
+    build: src/screenshot
+    volumes:
+      - screenshots:/app/data/screenshots
+    restart: on-failure
+
+  caption:
+    build: src/caption
+    volumes:
+      - screenshots:/app/data/screenshots
+      - processed:/app/data/processed
+      - models:/app/data/models
+    environment:
+      - ES_HOST=elasticsearch
+      - HF_TOKEN
+    restart: on-failure
+    depends_on:
+      - elasticsearch
+
+  search:
+    build: src/search
+    volumes:
+      - processed:/app/data/processed
+    environment:
+      - ES_HOST=elasticsearch
+    ports:
+      - "5000:5000"
+    restart: on-failure
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    restart: on-failure
+
+volumes:
+  screenshots:
+  processed:
+  models:
