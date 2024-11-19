@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>screen-grep search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 150px;
+            margin-right: 10px;
+            scroll-snap-align: start;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/" method="post">
+            <input type="text" name="query" placeholder="Search..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if ocr_results %}
+        <h2>OCR Matches</h2>
+        <div class="carousel">
+            {% for result in ocr_results %}
+                <div class="carousel-item">
+                    <a href="{{ url_for('show_image', id=result['_id']) }}">
+                        <img src="{{ result['_source']['image_path'] }}" alt="Image">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if caption_results %}
+        <h2>Caption Matches</h2>
+        <div class="carousel">
+            {% for result in caption_results %}
+                <div class="carousel-item">
+                    <a href="{{ url_for('show_image', id=result['_id']) }}">
+                        <img src="{{ result['_source']['image_path'] }}" alt="Image">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
