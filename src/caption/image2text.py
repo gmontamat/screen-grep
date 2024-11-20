@@ -4,6 +4,7 @@ Define image2text models
 - BLIP: https://huggingface.co/Salesforce/blip-image-captioning-large
 - Llama 3.2 Vision: https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct
 """
+import os
 
 import pytesseract
 import torch
@@ -16,7 +17,7 @@ from transformers import (
     MllamaForConditionalGeneration,
 )
 
-MODELS_DIR = "data/models"
+os.environ["HF_HOME"] = os.getenv("HF_HOME", "data/models")
 
 
 class ScreenshotReader:
@@ -62,7 +63,6 @@ class LlamaCaption(ScreenshotReader):
         self.model = MllamaForConditionalGeneration.from_pretrained(
             self.model_id,
             torch_dtype=torch.bfloat16,
-            cache_dir=MODELS_DIR,
             # device_map="auto",
         )
         self.processor = AutoProcessor.from_pretrained(self.model_id)
@@ -94,7 +94,6 @@ class FlorenceCaption(ScreenshotReader):
         self.torch_dtype = torch.float32  # torch.float16 if torch.cuda.is_available() else torch.float32
         self.model = AutoModelForCausalLM.from_pretrained(
             self.model_id, torch_dtype=self.torch_dtype, trust_remote_code=True,
-            cache_dir=MODELS_DIR,
         ).to(self.device)
         self.processor = AutoProcessor.from_pretrained(self.model_id, trust_remote_code=True)
 
