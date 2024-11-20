@@ -41,7 +41,7 @@
 <body>
     <a href="/" class="back-link">Go Back</a>
     <div class="container">
-        <img src="{{ result['image_path'] }}" alt="Full Image">
+        <img src="../static/images/{{ result['image_path'] }}" alt="Image">
         <strong>OCR:</strong> {{ result['ocr'] }}<br>
         <strong>Caption:</strong> {{ result['caption'] }}
     </div>

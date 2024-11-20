@@ -72,8 +72,8 @@
         <div class="carousel">
             {% for result in ocr_results %}
                 <div class="carousel-item">
-                    <a href="{{ url_for('show_image', id=result['_id']) }}">
-                        <img src="{{ result['_source']['image_path'] }}" alt="Image">
+                    <a href="{{ url_for('display', screenshot_id=result['_id']) }}">
+                        <img src="static/images/{{ result['_source']['image_path'] }}" alt="Screenshot">
                     </a>
                 </div>
             {% endfor %}
@@ -85,8 +85,8 @@
         <div class="carousel">
             {% for result in caption_results %}
                 <div class="carousel-item">
-                    <a href="{{ url_for('show_image', id=result['_id']) }}">
-                        <img src="{{ result['_source']['image_path'] }}" alt="Image">
+                    <a href="{{ url_for('display', screenshot_id=result['_id']) }}">
+                        <img src="static/images/{{ result['_source']['image_path'] }}" alt="Screenshot">
                     </a>
                 </div>
             {% endfor %}
