@@ -13,6 +13,7 @@ services:
       - models:/app/data/models
     environment:
       - ES_HOST=elasticsearch
+      - HF_HOME=/app/data/models
       - HF_TOKEN
     restart: on-failure
     depends_on:
@@ -21,7 +22,7 @@ services:
   search:
     build: src/search
     volumes:
-      - processed:/app/data/processed
+      - processed:/app/static/images
     environment:
       - ES_HOST=elasticsearch
     ports:
