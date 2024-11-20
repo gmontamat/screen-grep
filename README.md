@@ -15,3 +15,38 @@ components:
 ```shell
 docker compose up -d
 ```
+
+**Note**: the screenshot service in docker is still a WIP and may not work properly.
+
+## Development setup
+
+Start the `screenshot` capturing script:
+
+```shell
+./src/screenshot/screenshot.sh
+```
+
+Next, start an [elasticsearch](https://www.elastic.co/elasticsearch) container with docker to store processed captions:
+
+```shell
+docker run --rm -it -e discovery.type=single-node -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+```
+
+To process the images into the searchable database, run:
+
+```shell
+pip install -r src/caption/requirements.txt
+python src/caption/main.py
+```
+
+Finally, start the [webapp](http://127.0.0.1:5000) to search previous screenshots:
+
+```shell
+pip install -r src/search/requirements.txt
+python src/search/app.py
+```
+
+# TODO
+
+- [ ] Complete docker compose setup
+- [ ] Improve search algorithm (use embeddings and fuzzy search?)
