@@ -21,6 +21,9 @@ take_screenshot() {
     elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
         # For Wayland, assuming grim is installed
         grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true).rect | "(.x),(.y) (.width)x(.height)"')" "$FILENAME"
+    elif [ "$(uname -o)" = "Msys" ]; then
+        # For Windows using PowerShell
+        powershell.exe -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; \$bmp = New-Object System.Drawing.Bitmap([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height); \$graphics = [System.Drawing.Graphics]::FromImage(\$bmp); \$graphics.CopyFromScreen(0, 0, 0, 0, \$bmp.Size); \$bmp.Save('$FILENAME')"
     else
         echo "Unsupported session type or desktop environment."
     fi
