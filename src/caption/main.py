@@ -20,7 +20,7 @@ def caption_images(input_path: str, output_path: str, es: Elasticsearch):
             # image2text model
             caption = IMAGE2TEXT_MODEL.generate_caption(file_path)
             # OCR
-            ocr = "No OCR"  # OCR_MODEL.generate_caption(file_path)
+            ocr = OCR_MODEL.generate_caption(file_path)
             # Move image to done
             shutil.move(file_path, output_path)
             # Add entry to elasticsearch
