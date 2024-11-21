@@ -1,6 +1,6 @@
 # accelerate==1.1.0
 einops==0.8.0
-elasticsearch==8.15.1
+elasticsearch==7.17.12
 pillow==11.0.0
 pytesseract==0.3.13
 torch==2.5.1
