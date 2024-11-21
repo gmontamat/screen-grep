@@ -4,8 +4,6 @@ Define image2text models
 - BLIP: https://huggingface.co/Salesforce/blip-image-captioning-large
 - Llama 3.2 Vision: https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct
 """
-import os
-
 import pytesseract
 import torch
 from PIL import Image
@@ -16,8 +14,6 @@ from transformers import (
     BlipProcessor,
     MllamaForConditionalGeneration,
 )
-
-os.environ["HF_HOME"] = os.getenv("HF_HOME", "data/models")
 
 
 class ScreenshotReader:
