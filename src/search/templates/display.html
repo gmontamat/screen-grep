@@ -39,9 +39,10 @@
     </style>
 </head>
 <body>
-    <a href="/" class="back-link">Go Back</a>
+    <a href="/" class="back-link">New Search</a>
+    <a href="javascript:history.back()" class="back-link">Go Back</a>
     <div class="container">
-        <img src="../static/images/{{ result['image_path'] }}" alt="Image">
+        <img src="../static/images/{{ result['image_path'] }}" alt="Screenshot">
         <strong>Caption:</strong> {{ result['caption'] }}<br>
         <strong>OCR:</strong> {{ result['ocr'] }}
     </div>
