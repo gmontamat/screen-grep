@@ -1,14 +1,14 @@
 services:
-  screenshot:
-    build: src/screenshot
-    volumes:
-      - screenshots:/app/data/screenshots
-    restart: on-failure
+  #  screenshot:
+  #    build: src/screenshot
+  #    volumes:
+  #      - screenshots:/app/data/screenshots
+  #    restart: on-failure
 
   caption:
     build: src/caption
     volumes:
-      - screenshots:/app/data/screenshots
+      - ./data/screenshots:/app/data/screenshots
       - processed:/app/data/processed
       - models:/app/data/models
     environment:
@@ -41,6 +41,6 @@ services:
     restart: on-failure
 
 volumes:
-  screenshots:
+  # screenshots:
   processed:
   models:
