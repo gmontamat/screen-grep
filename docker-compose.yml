@@ -9,7 +9,7 @@ services:
     build: src/caption
     volumes:
       - ./data/screenshots:/app/data/screenshots
-      - processed:/app/data/processed
+      - storage:/app/data/storage
       - models:/app/data/models
     environment:
       - ES_HOST=elasticsearch
@@ -22,7 +22,7 @@ services:
   search:
     build: src/search
     volumes:
-      - processed:/app/static/images
+      - storage:/app/static/images
     environment:
       - ES_HOST=elasticsearch
     ports:
@@ -33,6 +33,8 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
     environment:
       - discovery.type=single-node
     ports:
@@ -42,5 +44,6 @@ services:
 
 volumes:
   # screenshots:
-  processed:
+  esdata:
+  storage:
   models:
