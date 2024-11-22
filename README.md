@@ -22,7 +22,9 @@ Start the screenshot capturing script (which isn't dockerized yet):
 ./src/screenshot/screenshot.sh 10  # Screenshot every 10 seconds
 ```
 
-It should begin collecting screenshots from your active window under `data/screenshots`.
+If you're running a Windows OS, see how to use the alternative [screenshot PowerShell script](#screenshots-in-windows).
+
+This scrip should begin collecting screenshots from your active window under `data/screenshots`.
 
 **TIP**: you can stop this script to stop capturing new screenshots while still running the search service.
 
@@ -63,10 +65,29 @@ pip install -r src/search/requirements.txt
 python src/search/app.py
 ```
 
+## Screenshots in Windows
+
+To capture screenshots in Windows, use [this PowerShell script](src/screenshot/screenshot.ps1). In order to run it, you
+should change the default PowerShell's execution policy, which restricts the running of scripts for security reasons:
+
+1. Search for "PowerShell" in the Start menu.
+2. Right-click on "Windows PowerShell" and select "Run as administrator."
+3. Run the following command to set the execution policy to allow running scripts:
+    ```shell
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+    ```
+
+Once the policy is set, right-click on the [PowerShell script](src/screenshot/screenshot.ps1) and select
+"Run with PowerShell."
+
 # TODO
 
 - [ ] Move the screenshot script in docker
 - [ ] Regex to isolate hyperlinks from screenshots
-- [ ] Support macos, windows
-- [ ] Improve search algorithm (use embeddings and fuzzy search)
+- [ ] Remove past screenshots
+- [ ] Remove history
+- [ ] Expand linux support
+- [x] Windows support
+- [ ] macos support
+- [ ] Improve search algorithm (use embeddings combined with fuzzy search)
 - [ ] Add LLM chat support (eg: be able to ask "how much time have I been working on my IDE today?")
