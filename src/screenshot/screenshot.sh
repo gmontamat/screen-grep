@@ -21,6 +21,9 @@ take_screenshot() {
     elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
         # For Wayland, assuming grim is installed
         grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true).rect | "(.x),(.y) (.width)x(.height)"')" "$FILENAME"
+    elif [ "$(uname)" = "Darwin" ]; then
+        # For macOS using screencapture (WIP: this captures main screen when "Displays have separate Spaces" is off)
+        screencapture -x "$FILENAME"
     else
         echo "Unsupported session type or desktop environment."
     fi
