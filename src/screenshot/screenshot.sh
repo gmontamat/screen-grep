@@ -22,8 +22,14 @@ take_screenshot() {
         # For Wayland, assuming grim is installed
         grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true).rect | "(.x),(.y) (.width)x(.height)"')" "$FILENAME"
     elif [ "$(uname)" = "Darwin" ]; then
-        # For macOS using screencapture (WIP: this captures main screen when "Displays have separate Spaces" is off)
-        screencapture -x "$FILENAME"
+        # For macOS using Shortcuts or screencapture
+        if shortcuts list | grep -q "Screenshot active window"; then
+            shortcuts run "Screenshot active window"
+            mv ~/Documents/active_window.png "$FILENAME"
+        else
+            # Captures entire screen
+            screencapture -x "$FILENAME"
+        fi
     else
         echo "Unsupported session type or desktop environment."
     fi

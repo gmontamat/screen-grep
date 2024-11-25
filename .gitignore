@@ -163,4 +163,5 @@ cython_debug/
 
 # Screenshots
 *.png
+!assets/*.png
 data/
