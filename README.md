@@ -59,7 +59,7 @@ Run an [elasticsearch](https://www.elastic.co/elasticsearch) container in docker
 docker run --rm -it -e discovery.type=single-node -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:7.10.1
 ```
 
-Run the indexing service that stores the screenshots and their captions to the searchable database:
+Run the service that generates captions from the screenshots and stores them in the search index:
 
 ```shell
 pip install -r src/caption/requirements.txt
