@@ -45,6 +45,13 @@ running in a separate location, define the `SCREENSHOTS` environment variable be
 export SCREENSHOTS=/path/to/data/screenshots
 ```
 
+## Minimum Requirements
+
+The default image-to-text model, [microsoft/Florence-2-large](https://huggingface.co/microsoft/Florence-2-large),
+requires at least 16GB of RAM for inference. If you have less available memory, consider using a smaller variant, such
+as [microsoft/Florence-2-base](https://huggingface.co/microsoft/Florence-2-base), which only needs 8GB. To use this
+variant, replace [this line](src/caption/image2text.py#L95) with `microsoft/Florence-2-base`.
+
 ## Local development setup
 
 Run the screenshot capturing script:
@@ -80,9 +87,13 @@ Support for this component throughout different OSes is still a work in progress
 
 ### Linux
 
-When using KDE Plasma, the `spectacle` app CLI interface is used, so make sure it's installed.
-For other `X11` window sessions, `imagemagick` and `xdottool` need to be installed in your system.
-For `Wayland` support, the script uses `grim`, `swaymsg`, and `jq`.
+The [`screenshot.sh` script](src/screenshot/screenshot.sh) supports a variety of different environments:
+
+- For [KDE Plasma](https://kde.org/plasma-desktop/), the script utilizes the `spectacle` app CLI, so please ensure it is
+  installed.
+- In other [X11](https://en.wikipedia.org/wiki/X_Window_System) window sessions, you need to have `imagemagick`
+  and `xdottool` installed on your system.
+- For [Wayland](https://wayland.freedesktop.org/) support, the script uses `grim`, `swaymsg`, and `jq`.
 
 ### Windows
 
