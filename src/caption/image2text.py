@@ -1,9 +1,17 @@
 """
-Define image2text models
-- OCR: tesseract
-- BLIP: https://huggingface.co/Salesforce/blip-image-captioning-large
-- Llama 3.2 Vision: https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct
+Define image-to-text models
+
+- OCR:
+  - tesseract
+- Captions:
+  - Not used:
+    - BLIP: https://huggingface.co/Salesforce/blip-image-captioning-large
+    - Llama 3.2 Vision: https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct
+  - Suggested:
+    - Florence2 Large: https://huggingface.co/microsoft/Florence-2-large
+    - Florence2 Base: https://huggingface.co/microsoft/Florence-2-base
 """
+
 import pytesseract
 import torch
 from PIL import Image
