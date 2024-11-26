@@ -145,11 +145,12 @@ first time you run it, it will request user authorization. Select "Always Allow"
 # Roadmap of features
 
 - [ ] Regex to isolate hyperlinks from screenshots
+- [ ] Handle similar screenshots (find and remove duplicates)
+- [ ] Improve search algorithm (use embeddings combined with fuzzy search)
 - [ ] Option to remove specific screenshots
 - [ ] Option to remove history
 - [ ] Expand Linux screenshot support
 - [x] Windows screenshot support
 - [x] macOS screenshot support
 - [ ] Simplify and move the screenshot script to docker
-- [ ] Improve search algorithm (use embeddings combined with fuzzy search)
 - [ ] Add LLM chat support (eg: be able to ask "how much time have I been working on my IDE today?")
