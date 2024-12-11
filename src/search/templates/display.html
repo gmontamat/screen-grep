@@ -9,6 +9,7 @@
             margin: 0;
             padding: 20px;
             background-color: #f4f4f9;
+            color: #333;
         }
         .container {
             max-width: 800px;
@@ -38,6 +39,24 @@
         }
         .back-link + .back-link {
             top: 50px; /* Adjusted to prevent overlap */
+        }
+
+        /* Dark theme styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+            }
+            .container {
+                background: #1e1e1e;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            .back-link {
+                color: #bb86fc;
+            }
+            .back-link:hover {
+                color: #3700b3;
+            }
         }
     </style>
 </head>

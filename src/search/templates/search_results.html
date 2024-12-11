@@ -9,6 +9,7 @@
             margin: 0;
             padding: 20px;
             background-color: #f4f4f9;
+            color: #333;
         }
         .container {
             max-width: 800px;
@@ -57,6 +58,33 @@
             height: auto;
             display: block;
             margin-top: 10px;
+        }
+
+        /* Dark theme styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+            }
+            .container {
+                background: #1e1e1e;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            input[type="text"] {
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+                border: 1px solid #444;
+            }
+            button {
+                background-color: #bb86fc;
+            }
+            button:hover {
+                background-color: #3700b3;
+            }
+            .carousel-item {
+                background: #2c2c2c;
+                border: 1px solid #444;
+            }
         }
     </style>
 </head>
